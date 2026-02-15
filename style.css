@@ -1,0 +1,260 @@
+/* ==============================
+   GLOBAL RESET
+============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #001233, #001845, #002855);
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ==============================
+   MAIN CONTAINER
+============================== */
+.container {
+    width: 95%;
+    max-width: 420px;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 25px;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 40, 100, 0.35);
+    border: 1px solid rgba(0, 170, 255, 0.2);
+    box-shadow: 
+        0 0 25px rgba(0, 170, 255, 0.5),
+        inset 0 0 10px rgba(0, 170, 255, 0.2);
+    transition: 0.3s ease-in-out;
+}
+
+/* ==============================
+   TABS
+============================== */
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    color: #8ecfff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.tab:hover {
+    color: #00aaff;
+}
+
+.tab.active {
+    color: #00aaff;
+    border-bottom: 2px solid #00aaff;
+}
+
+/* ==============================
+   CONTENT
+============================== */
+.content {
+    display: none;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(5px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* ==============================
+   DISPLAY
+============================== */
+.display {
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 170, 255, 0.3);
+}
+
+#history {
+    font-size: 14px;
+    color: #8ecfff;
+    min-height: 20px;
+    text-align: right;
+}
+
+#result {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 32px;
+    text-align: right;
+    font-weight: 600;
+}
+
+/* ==============================
+   BUTTON GRID
+============================== */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.btn {
+    padding: 18px;
+    font-size: 18px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    background: rgba(0, 120, 255, 0.4);
+    color: white;
+    transition: 0.2s ease;
+    box-shadow: 0 0 12px rgba(0, 170, 255, 0.4);
+}
+
+.btn:hover {
+    background: #0099ff;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.7);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.operator {
+    background: rgba(0, 80, 180, 0.6);
+}
+
+.equal {
+    background: #00aaff;
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+/* ==============================
+   CONVERTER
+============================== */
+.converter-box {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    box-shadow: inset 0 0 10px rgba(0, 170, 255, 0.3);
+}
+
+input::placeholder {
+    color: #8ecfff;
+}
+
+select option {
+    background: #001f3f;
+}
+
+#convertBtn {
+    padding: 14px;
+    border-radius: 15px;
+    border: none;
+    background: #00aaff;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+}
+
+#convertBtn:hover {
+    background: #0099ff;
+    transform: translateY(-2px);
+}
+
+/* ==============================
+   CONVERSION RESULT
+============================== */
+.conversion-result {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#rateInfo {
+    font-size: 14px;
+    color: #8ecfff;
+}
+
+#convertedAmount {
+    font-size: 22px;
+    margin-top: 8px;
+    font-weight: 600;
+    color: #00c3ff;
+}
+
+#lastUpdated {
+    font-size: 12px;
+    color: #6ec6ff;
+}
+
+/* ==============================
+   FOOTER
+============================== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #000814;
+    color: #00aaff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 14px;
+    box-shadow: 0 -5px 20px rgba(0, 170, 255, 0.4);
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+@media (max-width: 480px) {
+    .container {
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    #result {
+        font-size: 26px;
+    }
+
+    .btn {
+        padding: 16px;
+        font-size: 16px;
+    }
+}
