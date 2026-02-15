@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SMORK'S TECH Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" data-tab="calculator">Calculator</button>
+        <button class="tab" data-tab="converter">Currency Converter</button>
+    </div>
+
+    <!-- ================= CALCULATOR ================= -->
+    <div class="content active" id="calculator">
+
+        <div class="display">
+            <div id="history"></div>
+            <input type="text" id="result" readonly placeholder="0">
+        </div>
+
+        <div class="buttons">
+
+            <button class="btn operator">C</button>
+            <button class="btn operator">⌫</button>
+            <button class="btn operator">%</button>
+            <button class="btn operator">÷</button>
+
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn operator">×</button>
+
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn operator">−</button>
+
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn operator">+</button>
+
+            <button class="btn zero">0</button>
+            <button class="btn">.</button>
+            <button class="btn equal">=</button>
+
+        </div>
+    </div>
+
+    <!-- ================= CURRENCY CONVERTER ================= -->
+    <div class="content" id="converter">
+
+        <div class="converter-box">
+
+            <input type="number" id="amount" placeholder="Enter amount" min="0">
+
+            <select id="fromCurrency">
+                <option value="">From Currency</option>
+            </select>
+
+            <select id="toCurrency">
+                <option value="">To Currency</option>
+            </select>
+
+            <button id="convertBtn">Convert Currency</button>
+
+            <div class="conversion-result">
+                <p id="rateInfo"></p>
+                <h2 id="convertedAmount"></h2>
+                <small id="lastUpdated"></small>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    SMORK'S TECH © 2026 ALL RIGHTS RESERVED
+</footer>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
