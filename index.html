@@ -23,9 +23,8 @@
       <input type="text" id="displayInput" readonly placeholder="0">
     </div>
 
-    <!-- Normal & Scientific Calculator Buttons -->
+    <!-- Normal Calculator Buttons -->
     <div class="buttons-grid" id="calculatorButtons">
-      <!-- Normal Mode Buttons -->
       <button data-value="AC" class="operator">AC</button>
       <button data-value="DEL" class="operator">DEL</button>
       <button data-value="%" class="operator">%</button>
@@ -51,8 +50,9 @@
       <button data-value="=" class="equal">=</button>
     </div>
 
-    <!-- Scientific Calculator Buttons -->
+    <!-- Scientific Calculator Buttons (Numbers + Scientific Keys) -->
     <div class="buttons-grid hidden" id="scientificButtons">
+      <!-- Scientific functions -->
       <button data-value="sin(">sin</button>
       <button data-value="cos(">cos</button>
       <button data-value="tan(">tan</button>
@@ -67,9 +67,30 @@
 
       <button data-value="Math.PI">π</button>
       <button data-value="Math.E">e</button>
+
+      <!-- Numbers & operators -->
+      <button data-value="7">7</button>
+      <button data-value="8">8</button>
+      <button data-value="9">9</button>
+      <button data-value="/" class="operator">÷</button>
+
+      <button data-value="4">4</button>
+      <button data-value="5">5</button>
+      <button data-value="6">6</button>
+      <button data-value="*" class="operator">×</button>
+
+      <button data-value="1">1</button>
+      <button data-value="2">2</button>
+      <button data-value="3">3</button>
+      <button data-value="-" class="operator">−</button>
+
+      <button data-value="0">0</button>
+      <button data-value="." class="operator">.</button>
+      <button data-value="=" class="equal">=</button>
+      <button data-value="+" class="operator">+</button>
+
       <button data-value="AC" class="operator">AC</button>
       <button data-value="DEL" class="operator">DEL</button>
-      <button data-value="=" class="equal">=</button>
     </div>
 
     <!-- Currency Converter -->
@@ -92,4 +113,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+  </html>
