@@ -1,68 +1,82 @@
-/* Reset & Base */
-* {
-  box-sizing: border-box;
+/* ==========================
+   SMORK'S TECH Multi-Mode Calculator
+   ========================== */
+
+/* Google Fonts */
+body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
-}
-
-body {
-  background-color: #0b0f2d;
-  color: #fff;
+  background-color: #0b0f2d; /* Deep Midnight Blue */
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 20px;
 }
 
-/* Container */
+/* Calculator Container */
 .calculator-container {
-  width: 100%;
-  max-width: 450px;
+  width: 95%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #0c1236;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 50, 255, 0.4);
 }
 
 /* Header */
 header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .mode-toggle button {
-  background: #1a1f47;
+  background-color: #1a237e; /* Dark Royal Blue */
+  color: #ffffff;
   border: none;
-  color: #fff;
-  padding: 10px 15px;
+  padding: 8px 15px;
   margin: 0 5px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s;
 }
 
 .mode-toggle button.active {
-  background: #4169e1;
-  box-shadow: 0 0 10px #4169e1;
+  background-color: #2962ff; /* Royal Blue Active */
+  box-shadow: 0 0 10px #2962ff;
 }
 
-/* Display */
+.mode-toggle button:hover {
+  background-color: #3d5afe;
+}
+
+/* Display Panel */
 .display {
-  background: #1a1f47;
-  border-radius: 12px;
-  padding: 15px;
-  margin-bottom: 20px;
+  background-color: #0b0f2d;
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 15px;
+  min-height: 60px;
 }
 
 .display input {
   width: 100%;
+  font-size: 1.5rem;
   background: none;
   border: none;
-  color: #fff;
-  font-size: 2rem;
+  color: #ffffff;
   text-align: right;
 }
 
-.history {
-  font-size: 0.9rem;
+.display .history {
+  font-size: 0.8rem;
   color: #a0a0a0;
   text-align: right;
   margin-bottom: 5px;
@@ -73,44 +87,49 @@ header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  margin-bottom: 20px;
 }
 
-.buttons-grid button {
-  padding: 20px;
-  font-size: 1.2rem;
-  border: none;
+button[data-value] {
+  padding: 18px;
+  font-size: 1.1rem;
   border-radius: 10px;
-  background: #141a3a;
-  color: #fff;
+  border: none;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.15s;
+  background-color: #1a1f3f; /* slightly lighter than bg */
+  color: #ffffff;
 }
 
-.buttons-grid button.operator {
-  background: #1a1f47;
+button.operator {
+  background-color: #0d0f3a; /* darker operator buttons */
 }
 
-.buttons-grid button.equal {
-  background: #4169e1;
-  box-shadow: 0 0 10px #4169e1;
+button.equal {
+  background-color: #2962ff; /* Royal Blue equal button */
+  box-shadow: 0 0 10px #2962ff;
+  grid-column: span 2;
 }
 
-.buttons-grid button:hover {
+button:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(41, 98, 255, 0.7);
 }
 
-/* Hidden */
 .hidden {
   display: none;
 }
 
 /* Currency Converter */
 .currency-converter {
-  background: #1a1f47;
-  border-radius: 12px;
+  margin-top: 25px;
   padding: 15px;
-  margin-bottom: 20px;
+  background-color: #0c1236;
+  border-radius: 15px;
+}
+
+.currency-converter h2 {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .currency-converter input,
@@ -119,36 +138,64 @@ header {
   width: 100%;
   padding: 10px;
   margin: 5px 0;
-  border-radius: 8px;
+  border-radius: 10px;
   border: none;
+  font-size: 1rem;
 }
 
 .currency-converter button {
-  background: #4169e1;
-  color: #fff;
+  background-color: #2962ff;
+  color: #ffffff;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.2s;
 }
 
 .currency-converter button:hover {
-  transform: scale(1.03);
+  background-color: #3d5afe;
+  box-shadow: 0 0 10px #2962ff;
+}
+
+.currency-converter .selects {
+  display: flex;
+  gap: 10px;
+}
+
+.currency-converter select {
+  flex: 1;
+}
+
+#conversionResult {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+#lastUpdated {
+  font-size: 0.7rem;
+  color: #a0a0a0;
+  display: block;
+  text-align: center;
 }
 
 /* Footer */
 footer {
   text-align: center;
+  margin-top: 20px;
   font-size: 0.8rem;
   color: #a0a0a0;
 }
 
-/* Responsive */
-@media (max-width: 500px) {
+/* Responsive Design */
+@media (max-width: 480px) {
   .buttons-grid button {
     padding: 15px;
     font-size: 1rem;
   }
 
-  .display input {
-    font-size: 1.5rem;
+  header h1 {
+    font-size: 1.2rem;
   }
-}
+
+  .display input {
+    font-size: 1.2rem;
+  }
+  }
