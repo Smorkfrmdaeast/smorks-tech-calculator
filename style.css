@@ -21,9 +21,9 @@ html, body {
 ================================ */
 .app {
     flex: 1;
-    max-width: 430px;
+    max-width: 450px;
     margin: 0 auto;
-    padding: 24px 18px;
+    padding: 24px 16px;
     display: flex;
     flex-direction: column;
 }
@@ -33,16 +33,17 @@ html, body {
 ================================ */
 .app-header {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .app-header h1 {
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 700;
     color: #F9FAFB;
 }
 
 .subtitle {
-    font-size: 13px;
+    font-size: 14px;
     color: #94A3B8;
     margin-top: 4px;
 }
@@ -53,21 +54,21 @@ html, body {
 .tab-switch {
     display: flex;
     background: #111827;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 4px;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .tab {
     flex: 1;
     border: none;
     background: transparent;
-    padding: 10px;
+    padding: 12px;
     font-size: 14px;
     font-weight: 500;
     color: #94A3B8;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: all 0.25s ease;
 }
 
@@ -93,7 +94,7 @@ html, body {
 ================================ */
 .display {
     background: #111827;
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 18px;
     margin-bottom: 22px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
@@ -185,7 +186,7 @@ html, body {
 ================================ */
 .converter-card {
     background: #111827;
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 18px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     display: flex;
@@ -196,7 +197,7 @@ html, body {
 input, select {
     background: #1E293B;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 14px;
     font-size: 14px;
     color: #E5E7EB;
@@ -221,7 +222,7 @@ input::placeholder {
 #convertBtn {
     background: #2563EB;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 14px;
     font-weight: 600;
     color: white;
@@ -273,7 +274,7 @@ input::placeholder {
 @media (max-width: 480px) {
 
     .app {
-        padding: 20px 14px;
+        padding: 20px 12px;
     }
 
     #result {
@@ -284,4 +285,27 @@ input::placeholder {
         padding: 16px 0;
         font-size: 16px;
     }
-   }
+
+    .tab-switch {
+        gap: 6px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    input, select {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    #convertBtn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .conversion-output #convertedAmount {
+        font-size: 18px;
+    }
+}
