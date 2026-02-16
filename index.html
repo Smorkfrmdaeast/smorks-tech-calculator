@@ -9,8 +9,6 @@
 </head>
 <body>
   <div class="calculator-container">
-    
-    <!-- Header -->
     <header>
       <h1>SMORK'S TECH CALCULATOR</h1>
       <div class="mode-toggle">
@@ -19,35 +17,30 @@
       </div>
     </header>
 
-    <!-- Calculator Display -->
+    <!-- Display -->
     <div class="display">
       <div id="history" class="history"></div>
       <input type="text" id="inputDisplay" readonly placeholder="0">
     </div>
 
-    <!-- Calculator Buttons -->
+    <!-- Normal Calculator -->
     <div id="normalCalculator" class="buttons-grid normal-mode">
-      <!-- Row 1 -->
       <button class="btn function" data-value="AC">AC</button>
       <button class="btn function" data-value="DEL">DEL</button>
       <button class="btn operator" data-value="%">%</button>
       <button class="btn operator" data-value="/">÷</button>
-      <!-- Row 2 -->
       <button class="btn number" data-value="7">7</button>
       <button class="btn number" data-value="8">8</button>
       <button class="btn number" data-value="9">9</button>
       <button class="btn operator" data-value="*">×</button>
-      <!-- Row 3 -->
       <button class="btn number" data-value="4">4</button>
       <button class="btn number" data-value="5">5</button>
       <button class="btn number" data-value="6">6</button>
       <button class="btn operator" data-value="-">−</button>
-      <!-- Row 4 -->
       <button class="btn number" data-value="1">1</button>
       <button class="btn number" data-value="2">2</button>
       <button class="btn number" data-value="3">3</button>
       <button class="btn operator" data-value="+">+</button>
-      <!-- Row 5 -->
       <button class="btn number" data-value="0">0</button>
       <button class="btn number" data-value=".">.</button>
       <button class="btn equal" data-value="=">=</button>
@@ -55,42 +48,34 @@
 
     <!-- Scientific Calculator -->
     <div id="scientificCalculator" class="buttons-grid scientific-mode hidden">
-      <!-- Row 1 -->
       <button class="btn function" data-value="AC">AC</button>
       <button class="btn function" data-value="DEL">DEL</button>
       <button class="btn operator" data-value="(">(</button>
       <button class="btn operator" data-value=")">)</button>
-      <!-- Row 2 -->
       <button class="btn function" data-value="sin(">sin</button>
       <button class="btn function" data-value="cos(">cos</button>
       <button class="btn function" data-value="tan(">tan</button>
       <button class="btn operator" data-value="^">xʸ</button>
-      <!-- Row 3 -->
       <button class="btn function" data-value="log(">log</button>
       <button class="btn function" data-value="ln(">ln</button>
       <button class="btn function" data-value="√(">√</button>
       <button class="btn operator" data-value="^2">x²</button>
-      <!-- Row 4 -->
       <button class="btn number" data-value="7">7</button>
       <button class="btn number" data-value="8">8</button>
       <button class="btn number" data-value="9">9</button>
       <button class="btn operator" data-value="/">÷</button>
-      <!-- Row 5 -->
       <button class="btn number" data-value="4">4</button>
       <button class="btn number" data-value="5">5</button>
       <button class="btn number" data-value="6">6</button>
       <button class="btn operator" data-value="*">×</button>
-      <!-- Row 6 -->
       <button class="btn number" data-value="1">1</button>
       <button class="btn number" data-value="2">2</button>
       <button class="btn number" data-value="3">3</button>
       <button class="btn operator" data-value="-">−</button>
-      <!-- Row 7 -->
       <button class="btn number" data-value="0">0</button>
       <button class="btn number" data-value=".">.</button>
       <button class="btn equal" data-value="=">=</button>
       <button class="btn operator" data-value="+">+</button>
-      <!-- Constants -->
       <button class="btn constant" data-value="Math.PI">π</button>
       <button class="btn constant" data-value="Math.E">e</button>
     </div>
@@ -111,7 +96,6 @@
       </div>
     </div>
 
-    <!-- Footer -->
     <footer>
       SMORK'S TECH © All Rights Reserved 2026
     </footer>
@@ -119,4 +103,4 @@
 
   <script src="script.js"></script>
 </body>
-  </html>
+          </html>
