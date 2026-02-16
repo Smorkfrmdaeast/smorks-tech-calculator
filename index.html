@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMORK'S TECH Multi-Mode Calculator</title>
+  <title>SMORK'S TECH Calculator</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -17,13 +17,13 @@
       </div>
     </header>
 
-    <!-- Display Panel -->
+    <!-- Display -->
     <div class="display">
       <div id="history" class="history"></div>
       <input type="text" id="displayInput" readonly placeholder="0">
     </div>
 
-    <!-- Normal Calculator Buttons -->
+    <!-- Normal Calculator -->
     <div class="buttons-grid" id="calculatorButtons">
       <button data-value="AC" class="operator">AC</button>
       <button data-value="DEL" class="operator">DEL</button>
@@ -50,7 +50,7 @@
       <button data-value="=" class="equal">=</button>
     </div>
 
-    <!-- Scientific Calculator Buttons (Numbers + Scientific Keys) -->
+    <!-- Scientific Calculator -->
     <div class="buttons-grid hidden" id="scientificButtons">
       <button data-value="sin(">sin</button>
       <button data-value="cos(">cos</button>
@@ -91,7 +91,7 @@
       <button data-value="DEL" class="operator">DEL</button>
     </div>
 
-    <!-- Full Country Currency Converter -->
+    <!-- Currency Converter -->
     <div class="currency-converter">
       <h2>Currency Converter</h2>
       <input type="number" id="amount" placeholder="Amount" min="0">
@@ -108,5 +108,7 @@
       SMORK'S TECH © All Rights Reserved 2026
     </footer>
   </div>
+
+  <script src="script.js"></script>
 </body>
-        </html>
+  </html>
