@@ -1,149 +1,143 @@
-// ==========================
-// SMORK'S TECH Multi-Mode Calculator + Full Currency Converter
-// ==========================
+// ===== MODE TOGGLE =====
+const normalBtn = document.getElementById('normalModeBtn');
+const scientificBtn = document.getElementById('scientificModeBtn');
+const normalCalc = document.getElementById('normalCalculator');
+const scientificCalc = document.getElementById('scientificCalculator');
 
-document.addEventListener('DOMContentLoaded', () => {
-  // --- Calculator Elements ---
-  const displayInput = document.getElementById('displayInput');
-  const history = document.getElementById('history');
-  const normalBtn = document.getElementById('normalBtn');
-  const scientificBtn = document.getElementById('scientificBtn');
-  const calculatorButtons = document.getElementById('calculatorButtons');
-  const scientificButtons = document.getElementById('scientificButtons');
-  let currentInput = '';
+normalBtn.addEventListener('click', () => {
+  normalCalc.classList.remove('hidden');
+  scientificCalc.classList.add('hidden');
+  normalBtn.classList.add('active');
+  scientificBtn.classList.remove('active');
+});
 
-  // --- Mode Toggle ---
-  normalBtn.addEventListener('click', () => {
-    calculatorButtons.classList.remove('hidden');
-    scientificButtons.classList.add('hidden');
-    normalBtn.classList.add('active');
-    scientificBtn.classList.remove('active');
-    displayInput.value = '';
-    currentInput = '';
-  });
+scientificBtn.addEventListener('click', () => {
+  normalCalc.classList.add('hidden');
+  scientificCalc.classList.remove('hidden');
+  scientificBtn.classList.add('active');
+  normalBtn.classList.remove('active');
+});
 
-  scientificBtn.addEventListener('click', () => {
-    calculatorButtons.classList.add('hidden');
-    scientificButtons.classList.remove('hidden');
-    scientificBtn.classList.add('active');
-    normalBtn.classList.remove('active');
-    displayInput.value = '';
-    currentInput = '';
-  });
+// ===== DISPLAY & BUTTONS =====
+const inputDisplay = document.getElementById('inputDisplay');
+const historyDisplay = document.getElementById('history');
+let currentInput = '';
+let history = '';
 
-  // --- Calculator Button Input ---
-  document.querySelectorAll('button[data-value]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      handleInput(btn.dataset.value);
-    });
-  });
+function updateDisplay() {
+  inputDisplay.value = currentInput || '0';
+  historyDisplay.textContent = history;
+}
 
-  function handleInput(value) {
+// Handle button clicks
+document.querySelectorAll('button.btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const value = btn.dataset.value;
+
     if (value === 'AC') {
       currentInput = '';
-      displayInput.value = '';
-      history.textContent = '';
+      history = '';
     } else if (value === 'DEL') {
       currentInput = currentInput.slice(0, -1);
-      displayInput.value = currentInput;
     } else if (value === '=') {
-      calculateResult();
+      try {
+        let expression = currentInput
+          .replace(/÷/g, '/')
+          .replace(/×/g, '*')
+          .replace(/√/g, 'Math.sqrt')
+          .replace(/sin\(/g, 'Math.sin(toRad(')
+          .replace(/cos\(/g, 'Math.cos(toRad(')
+          .replace(/tan\(/g, 'Math.tan(toRad(')
+          .replace(/ln\(/g, 'Math.log(')
+          .replace(/log\(/g, 'Math.log10(')
+          .replace(/\^2/g, '**2')
+          .replace(/\^/g, '**');
+        
+        const result = eval(expression);
+        history = currentInput + ' =';
+        currentInput = result;
+      } catch {
+        currentInput = 'Error';
+      }
     } else {
       currentInput += value;
-      displayInput.value = currentInput;
     }
-  }
-
-  // --- Calculator Evaluation ---
-  function calculateResult() {
-    try {
-      let expr = currentInput
-        .replace(/sin\(/g, 'Math.sin(')
-        .replace(/cos\(/g, 'Math.cos(')
-        .replace(/tan\(/g, 'Math.tan(')
-        .replace(/log\(/g, 'Math.log10(')
-        .replace(/ln\(/g, 'Math.log(')
-        .replace(/π/g, 'Math.PI')
-        .replace(/e/g, 'Math.E');
-
-      // Convert degrees to radians for trig
-      expr = expr.replace(/Math\.sin\(([^)]+)\)/g, (m,p)=>`Math.sin(${p}*Math.PI/180)`);
-      expr = expr.replace(/Math\.cos\(([^)]+)\)/g, (m,p)=>`Math.cos(${p}*Math.PI/180)`);
-      expr = expr.replace(/Math\.tan\(([^)]+)\)/g, (m,p)=>`Math.tan(${p}*Math.PI/180)`);
-
-      const result = eval(expr);
-      history.textContent = currentInput + ' =';
-      displayInput.value = result;
-      currentInput = result.toString();
-    } catch {
-      displayInput.value = 'Error';
-      currentInput = '';
-    }
-  }
-
-  // --- Keyboard Support ---
-  document.addEventListener('keydown', e => {
-    if (!isNaN(e.key) || ['+', '-', '*', '/', '.', '(', ')'].includes(e.key)) handleInput(e.key);
-    else if (e.key === 'Enter') handleInput('=');
-    else if (e.key === 'Backspace') handleInput('DEL');
-    else if (e.key === 'Escape') handleInput('AC');
+    updateDisplay();
   });
-
-  // ==========================
-  // FULL COUNTRY CURRENCY CONVERTER
-  // ==========================
-  const amountInput = document.getElementById('amount');
-  const fromCurrency = document.getElementById('fromCurrency');
-  const toCurrency = document.getElementById('toCurrency');
-  const convertBtn = document.getElementById('convertBtn');
-  const conversionResult = document.getElementById('conversionResult');
-  const lastUpdated = document.getElementById('lastUpdated');
-
-  // Load all currency symbols
-  async function loadAllCurrencies() {
-    try {
-      const res = await fetch('https://api.exchangerate.host/symbols');
-      if (!res.ok) throw new Error('API fetch failed');
-      const data = await res.json();
-      const symbols = data.symbols;
-      for (const code in symbols) {
-        const name = symbols[code].description;
-        fromCurrency.innerHTML += `<option value="${code}">${code} - ${name}</option>`;
-        toCurrency.innerHTML += `<option value="${code}">${code} - ${name}</option>`;
-      }
-      fromCurrency.value = 'USD';
-      toCurrency.value = 'EUR';
-    } catch {
-      conversionResult.textContent = 'Error loading currencies';
-    }
-  }
-
-  loadAllCurrencies();
-
-  // Convert button
-  convertBtn.addEventListener('click', async () => {
-    const amount = parseFloat(amountInput.value);
-    const from = fromCurrency.value;
-    const to = toCurrency.value;
-
-    if (!amount || amount <= 0) {
-      conversionResult.textContent = 'Enter a valid amount';
-      return;
-    }
-
-    conversionResult.textContent = 'Converting...';
-    try {
-      const res = await fetch(`https://api.exchangerate.host/latest?base=${from}&symbols=${to}`);
-      const data = await res.json();
-      const rate = data.rates[to];
-      const converted = (amount * rate).toFixed(4);
-      conversionResult.textContent = `${amount} ${from} = ${converted} ${to}`;
-      lastUpdated.textContent = `Rate last updated: ${data.date}`;
-    } catch {
-      conversionResult.textContent = 'Conversion failed';
-    }
-  });
-
-  // Prevent calculator input interference
-  amountInput.addEventListener('input', e => e.stopPropagation());
 });
+
+// Convert degrees to radians for trig
+function toRad(deg) {
+  return deg * Math.PI / 180;
+}
+
+// ===== KEYBOARD SUPPORT =====
+document.addEventListener('keydown', (e) => {
+  const key = e.key;
+  if (!isNaN(key) || '+-*/().'.includes(key)) {
+    currentInput += key;
+  } else if (key === 'Enter') {
+    document.querySelector('button.equal').click();
+  } else if (key === 'Backspace') {
+    currentInput = currentInput.slice(0, -1);
+  } else if (key === 'Escape') {
+    currentInput = '';
+    history = '';
+  }
+  updateDisplay();
+});
+
+// ===== CURRENCY CONVERTER =====
+const amountInput = document.getElementById('amount');
+const fromCurrency = document.getElementById('fromCurrency');
+const toCurrency = document.getElementById('toCurrency');
+const convertBtn = document.getElementById('convertBtn');
+const exchangeRateText = document.getElementById('exchangeRate');
+const convertedAmountText = document.getElementById('convertedAmount');
+const lastUpdatedText = document.getElementById('lastUpdated');
+
+const apiKey = 'YOUR_API_KEY_HERE'; // Insert your API key
+let currencyList = [];
+
+async function fetchCurrencies() {
+  try {
+    const res = await fetch(`https://open.er-api.com/v6/latest/USD`);
+    const data = await res.json();
+    currencyList = Object.keys(data.rates);
+    currencyList.forEach(cur => {
+      fromCurrency.innerHTML += `<option value="${cur}">${cur}</option>`;
+      toCurrency.innerHTML += `<option value="${cur}">${cur}</option>`;
+    });
+  } catch (err) {
+    console.error('Error fetching currencies', err);
+  }
+}
+
+async function convertCurrency() {
+  const amount = parseFloat(amountInput.value);
+  const from = fromCurrency.value;
+  const to = toCurrency.value;
+
+  if (!amount || !from || !to) return;
+
+  try {
+    exchangeRateText.textContent = 'Loading...';
+    const res = await fetch(`https://open.er-api.com/v6/latest/${from}`);
+    const data = await res.json();
+    const rate = data.rates[to];
+    const converted = (amount * rate).toFixed(2);
+
+    convertedAmountText.textContent = `${amount} ${from} = ${converted} ${to}`;
+    exchangeRateText.textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+    lastUpdatedText.textContent = `Last Updated: ${data.time_last_update_utc}`;
+  } catch (err) {
+    exchangeRateText.textContent = 'Error fetching conversion';
+    convertedAmountText.textContent = '';
+    lastUpdatedText.textContent = '';
+    console.error(err);
+  }
+}
+
+convertBtn.addEventListener('click', convertCurrency);
+
+fetchCurrencies();
