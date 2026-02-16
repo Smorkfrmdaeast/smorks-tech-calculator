@@ -1,83 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMORK'S TECH Calculator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMORK'S TECH Multi-Mode Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app">
+  <div class="calculator-container">
+    <header>
+      <h1>SMORK'S TECH CALCULATOR</h1>
+      <div class="mode-toggle">
+        <button id="normalBtn" class="active">NORMAL</button>
+        <button id="scientificBtn">SCIENTIFIC</button>
+      </div>
+    </header>
 
-        <!-- HEADER -->
-        <header class="app-header">
-            <h1>SMORK'S TECH Calculator</h1>
-            <p class="subtitle">Multi-Mode: Normal & Scientific</p>
-        </header>
-
-        <!-- MODE SWITCH -->
-        <div class="mode-switch">
-            <button class="mode-btn active" id="normalModeBtn">Normal</button>
-            <button class="mode-btn" id="scientificModeBtn">Scientific</button>
-        </div>
-
-        <!-- DISPLAY PANEL -->
-        <div class="display">
-            <div id="history"></div>
-            <input type="text" id="display" readonly>
-        </div>
-
-        <!-- SCIENTIFIC PANEL -->
-        <div class="scientific-panel hidden" id="scientificPanel">
-            <button class="btn sci" data-value="sin(">sin</button>
-            <button class="btn sci" data-value="cos(">cos</button>
-            <button class="btn sci" data-value="tan(">tan</button>
-            <button class="btn sci" data-value="log(">log</button>
-            <button class="btn sci" data-value="ln(">ln</button>
-            <button class="btn sci" data-value="√">√</button>
-            <button class="btn sci" data-value="^">xʸ</button>
-            <button class="btn sci" data-value="π">π</button>
-            <button class="btn sci" data-value="e">e</button>
-            <button class="btn sci" data-value="(">(</button>
-            <button class="btn sci" data-value=")">)</button>
-        </div>
-
-        <!-- KEYPAD -->
-        <div class="keypad">
-            <button class="btn control" data-value="clear">AC</button>
-            <button class="btn control" data-value="delete">DEL</button>
-            <button class="btn operator" data-value="%">%</button>
-            <button class="btn operator" data-value="/">÷</button>
-
-            <button class="btn" data-value="7">7</button>
-            <button class="btn" data-value="8">8</button>
-            <button class="btn" data-value="9">9</button>
-            <button class="btn operator" data-value="*">×</button>
-
-            <button class="btn" data-value="4">4</button>
-            <button class="btn" data-value="5">5</button>
-            <button class="btn" data-value="6">6</button>
-            <button class="btn operator" data-value="-">−</button>
-
-            <button class="btn" data-value="1">1</button>
-            <button class="btn" data-value="2">2</button>
-            <button class="btn" data-value="3">3</button>
-            <button class="btn operator" data-value="+">+</button>
-
-            <button class="btn zero" data-value="0">0</button>
-            <button class="btn" data-value=".">.</button>
-            <button class="btn equal" data-value="=">=</button>
-        </div>
-
-        <!-- FOOTER -->
-        <footer class="footer">
-            SMORK'S TECH &copy; All Rights Reserved 2026
-        </footer>
-
+    <!-- Display Panel -->
+    <div class="display">
+      <div id="history" class="history"></div>
+      <input type="text" id="displayInput" readonly placeholder="0">
     </div>
 
-    <!-- SCRIPT -->
-    <script src="script.js"></script>
+    <!-- Normal & Scientific Calculator Buttons -->
+    <div class="buttons-grid" id="calculatorButtons">
+      <!-- Normal Mode Buttons -->
+      <button data-value="AC" class="operator">AC</button>
+      <button data-value="DEL" class="operator">DEL</button>
+      <button data-value="%" class="operator">%</button>
+      <button data-value="/" class="operator">÷</button>
+
+      <button data-value="7">7</button>
+      <button data-value="8">8</button>
+      <button data-value="9">9</button>
+      <button data-value="*" class="operator">×</button>
+
+      <button data-value="4">4</button>
+      <button data-value="5">5</button>
+      <button data-value="6">6</button>
+      <button data-value="-" class="operator">−</button>
+
+      <button data-value="1">1</button>
+      <button data-value="2">2</button>
+      <button data-value="3">3</button>
+      <button data-value="+" class="operator">+</button>
+
+      <button data-value="0">0</button>
+      <button data-value="." class="operator">.</button>
+      <button data-value="=" class="equal">=</button>
+    </div>
+
+    <!-- Scientific Calculator Buttons -->
+    <div class="buttons-grid hidden" id="scientificButtons">
+      <button data-value="sin(">sin</button>
+      <button data-value="cos(">cos</button>
+      <button data-value="tan(">tan</button>
+      <button data-value="(">(</button>
+      <button data-value=")">)</button>
+
+      <button data-value="log(">log</button>
+      <button data-value="ln(">ln</button>
+      <button data-value="sqrt(">√</button>
+      <button data-value="**2">x²</button>
+      <button data-value="**">xʸ</button>
+
+      <button data-value="Math.PI">π</button>
+      <button data-value="Math.E">e</button>
+      <button data-value="AC" class="operator">AC</button>
+      <button data-value="DEL" class="operator">DEL</button>
+      <button data-value="=" class="equal">=</button>
+    </div>
+
+    <!-- Currency Converter -->
+    <div class="currency-converter">
+      <h2>Currency Converter</h2>
+      <input type="number" id="amount" placeholder="Amount" min="0">
+      <div class="selects">
+        <select id="fromCurrency"></select>
+        <select id="toCurrency"></select>
+      </div>
+      <button id="convertBtn">Convert</button>
+      <div id="conversionResult"></div>
+      <small id="lastUpdated"></small>
+    </div>
+
+    <footer>
+      SMORK'S TECH © All Rights Reserved 2026
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
