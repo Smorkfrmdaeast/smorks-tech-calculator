@@ -1,97 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SMORK'S TECH Calculator</title>
-    <meta name="description" content="SMORK'S TECH Calculator is a high-quality, full-screen mobile-friendly calculator and currency converter with modern glassmorphism design and neon blue highlights. © 2026 SMORK'S TECH.">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
+    <meta name="description"
+        content="SMORK'S TECH Calculator — A professional, mobile-first calculator and currency converter with a deep midnight blue interface and royal blue accents. Clean, mature and app-store ready. © 2026 SMORK'S TECH." />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Fullscreen App Container -->
-    <div class="container">
+    <div class="app">
 
-        <!-- TABS -->
-        <div class="tabs">
+        <!-- HEADER -->
+        <header class="app-header">
+            <h1>Calculator</h1>
+            <p class="subtitle">Professional Financial Tool</p>
+        </header>
+
+        <!-- TAB SWITCH -->
+        <div class="tab-switch">
             <button class="tab active" data-tab="calculatorTab">Calculator</button>
             <button class="tab" data-tab="converterTab">Converter</button>
         </div>
 
-        <!-- CALCULATOR TAB -->
-        <div class="content active" id="calculatorTab">
+        <!-- MAIN CONTENT -->
+        <main class="app-body">
 
-            <!-- Display -->
-            <div class="display">
-                <div id="history"></div>
-                <input type="text" id="result" placeholder="0" readonly>
-            </div>
+            <!-- CALCULATOR -->
+            <section class="tab-content active" id="calculatorTab">
 
-            <!-- Calculator Buttons -->
-            <div class="buttons">
-                <button class="btn">C</button>
-                <button class="btn">⌫</button>
-                <button class="btn operator">%</button>
-                <button class="btn operator">÷</button>
-
-                <button class="btn">7</button>
-                <button class="btn">8</button>
-                <button class="btn">9</button>
-                <button class="btn operator">×</button>
-
-                <button class="btn">4</button>
-                <button class="btn">5</button>
-                <button class="btn">6</button>
-                <button class="btn operator">−</button>
-
-                <button class="btn">1</button>
-                <button class="btn">2</button>
-                <button class="btn">3</button>
-                <button class="btn operator">+</button>
-
-                <button class="btn zero">0</button>
-                <button class="btn">.</button>
-                <button class="btn equal">=</button>
-            </div>
-
-        </div>
-
-        <!-- CURRENCY CONVERTER TAB -->
-        <div class="content" id="converterTab">
-            <div class="converter-box">
-
-                <input type="number" id="amount" placeholder="Enter amount" min="0" step="any">
-
-                <div class="currency-select">
-                    <select id="fromCurrency"></select>
-                    <span class="arrow">→</span>
-                    <select id="toCurrency"></select>
+                <div class="display">
+                    <div id="history"></div>
+                    <input type="text" id="result" placeholder="0" readonly>
                 </div>
 
-                <button id="convertBtn">Convert</button>
+                <div class="keypad">
+                    <button class="btn control">C</button>
+                    <button class="btn control">⌫</button>
+                    <button class="btn operator">%</button>
+                    <button class="btn operator">÷</button>
 
-                <div class="conversion-result">
-                    <div id="rateInfo"></div>
-                    <div id="convertedAmount"></div>
-                    <div id="lastUpdated"></div>
+                    <button class="btn">7</button>
+                    <button class="btn">8</button>
+                    <button class="btn">9</button>
+                    <button class="btn operator">×</button>
+
+                    <button class="btn">4</button>
+                    <button class="btn">5</button>
+                    <button class="btn">6</button>
+                    <button class="btn operator">−</button>
+
+                    <button class="btn">1</button>
+                    <button class="btn">2</button>
+                    <button class="btn">3</button>
+                    <button class="btn operator">+</button>
+
+                    <button class="btn zero">0</button>
+                    <button class="btn">.</button>
+                    <button class="btn equal">=</button>
                 </div>
 
-            </div>
-        </div>
+            </section>
+
+            <!-- CURRENCY CONVERTER -->
+            <section class="tab-content" id="converterTab">
+
+                <div class="converter-card">
+
+                    <input type="number" id="amount" placeholder="Enter amount" min="0" step="any">
+
+                    <div class="currency-row">
+                        <select id="fromCurrency"></select>
+                        <span class="arrow">→</span>
+                        <select id="toCurrency"></select>
+                    </div>
+
+                    <button id="convertBtn">Convert</button>
+
+                    <div class="conversion-output">
+                        <div id="rateInfo"></div>
+                        <div id="convertedAmount"></div>
+                        <div id="lastUpdated"></div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
 
     </div>
 
     <!-- FOOTER -->
-    <footer>
+    <footer class="footer">
         SMORK'S TECH © 2026 — All Rights Reserved
     </footer>
 
-    <!-- JS -->
+    <!-- JavaScript -->
     <script src="script.js"></script>
 
 </body>
