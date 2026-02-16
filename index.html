@@ -5,105 +5,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SMORK'S TECH Calculator</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="calculator-container">
+    
+    <!-- Header -->
     <header>
       <h1>SMORK'S TECH CALCULATOR</h1>
       <div class="mode-toggle">
-        <button id="normalBtn" class="active">NORMAL</button>
-        <button id="scientificBtn">SCIENTIFIC</button>
+        <button id="normalModeBtn" class="active">Normal</button>
+        <button id="scientificModeBtn">Scientific</button>
       </div>
     </header>
 
-    <!-- Display -->
+    <!-- Calculator Display -->
     <div class="display">
       <div id="history" class="history"></div>
-      <input type="text" id="displayInput" readonly placeholder="0">
+      <input type="text" id="inputDisplay" readonly placeholder="0">
     </div>
 
-    <!-- Normal Calculator -->
-    <div class="buttons-grid" id="calculatorButtons">
-      <button data-value="AC" class="operator">AC</button>
-      <button data-value="DEL" class="operator">DEL</button>
-      <button data-value="%" class="operator">%</button>
-      <button data-value="/" class="operator">÷</button>
-
-      <button data-value="7">7</button>
-      <button data-value="8">8</button>
-      <button data-value="9">9</button>
-      <button data-value="*" class="operator">×</button>
-
-      <button data-value="4">4</button>
-      <button data-value="5">5</button>
-      <button data-value="6">6</button>
-      <button data-value="-" class="operator">−</button>
-
-      <button data-value="1">1</button>
-      <button data-value="2">2</button>
-      <button data-value="3">3</button>
-      <button data-value="+" class="operator">+</button>
-
-      <button data-value="0">0</button>
-      <button data-value="." class="operator">.</button>
-      <button data-value="=" class="equal">=</button>
+    <!-- Calculator Buttons -->
+    <div id="normalCalculator" class="buttons-grid normal-mode">
+      <!-- Row 1 -->
+      <button class="btn function" data-value="AC">AC</button>
+      <button class="btn function" data-value="DEL">DEL</button>
+      <button class="btn operator" data-value="%">%</button>
+      <button class="btn operator" data-value="/">÷</button>
+      <!-- Row 2 -->
+      <button class="btn number" data-value="7">7</button>
+      <button class="btn number" data-value="8">8</button>
+      <button class="btn number" data-value="9">9</button>
+      <button class="btn operator" data-value="*">×</button>
+      <!-- Row 3 -->
+      <button class="btn number" data-value="4">4</button>
+      <button class="btn number" data-value="5">5</button>
+      <button class="btn number" data-value="6">6</button>
+      <button class="btn operator" data-value="-">−</button>
+      <!-- Row 4 -->
+      <button class="btn number" data-value="1">1</button>
+      <button class="btn number" data-value="2">2</button>
+      <button class="btn number" data-value="3">3</button>
+      <button class="btn operator" data-value="+">+</button>
+      <!-- Row 5 -->
+      <button class="btn number" data-value="0">0</button>
+      <button class="btn number" data-value=".">.</button>
+      <button class="btn equal" data-value="=">=</button>
     </div>
 
     <!-- Scientific Calculator -->
-    <div class="buttons-grid hidden" id="scientificButtons">
-      <button data-value="sin(">sin</button>
-      <button data-value="cos(">cos</button>
-      <button data-value="tan(">tan</button>
-      <button data-value="(">(</button>
-      <button data-value=")">)</button>
-
-      <button data-value="log(">log</button>
-      <button data-value="ln(">ln</button>
-      <button data-value="sqrt(">√</button>
-      <button data-value="**2">x²</button>
-      <button data-value="**">xʸ</button>
-
-      <button data-value="Math.PI">π</button>
-      <button data-value="Math.E">e</button>
-
-      <button data-value="7">7</button>
-      <button data-value="8">8</button>
-      <button data-value="9">9</button>
-      <button data-value="/" class="operator">÷</button>
-
-      <button data-value="4">4</button>
-      <button data-value="5">5</button>
-      <button data-value="6">6</button>
-      <button data-value="*" class="operator">×</button>
-
-      <button data-value="1">1</button>
-      <button data-value="2">2</button>
-      <button data-value="3">3</button>
-      <button data-value="-" class="operator">−</button>
-
-      <button data-value="0">0</button>
-      <button data-value="." class="operator">.</button>
-      <button data-value="=" class="equal">=</button>
-      <button data-value="+" class="operator">+</button>
-
-      <button data-value="AC" class="operator">AC</button>
-      <button data-value="DEL" class="operator">DEL</button>
+    <div id="scientificCalculator" class="buttons-grid scientific-mode hidden">
+      <!-- Row 1 -->
+      <button class="btn function" data-value="AC">AC</button>
+      <button class="btn function" data-value="DEL">DEL</button>
+      <button class="btn operator" data-value="(">(</button>
+      <button class="btn operator" data-value=")">)</button>
+      <!-- Row 2 -->
+      <button class="btn function" data-value="sin(">sin</button>
+      <button class="btn function" data-value="cos(">cos</button>
+      <button class="btn function" data-value="tan(">tan</button>
+      <button class="btn operator" data-value="^">xʸ</button>
+      <!-- Row 3 -->
+      <button class="btn function" data-value="log(">log</button>
+      <button class="btn function" data-value="ln(">ln</button>
+      <button class="btn function" data-value="√(">√</button>
+      <button class="btn operator" data-value="^2">x²</button>
+      <!-- Row 4 -->
+      <button class="btn number" data-value="7">7</button>
+      <button class="btn number" data-value="8">8</button>
+      <button class="btn number" data-value="9">9</button>
+      <button class="btn operator" data-value="/">÷</button>
+      <!-- Row 5 -->
+      <button class="btn number" data-value="4">4</button>
+      <button class="btn number" data-value="5">5</button>
+      <button class="btn number" data-value="6">6</button>
+      <button class="btn operator" data-value="*">×</button>
+      <!-- Row 6 -->
+      <button class="btn number" data-value="1">1</button>
+      <button class="btn number" data-value="2">2</button>
+      <button class="btn number" data-value="3">3</button>
+      <button class="btn operator" data-value="-">−</button>
+      <!-- Row 7 -->
+      <button class="btn number" data-value="0">0</button>
+      <button class="btn number" data-value=".">.</button>
+      <button class="btn equal" data-value="=">=</button>
+      <button class="btn operator" data-value="+">+</button>
+      <!-- Constants -->
+      <button class="btn constant" data-value="Math.PI">π</button>
+      <button class="btn constant" data-value="Math.E">e</button>
     </div>
 
     <!-- Currency Converter -->
     <div class="currency-converter">
-      <h2>Currency Converter</h2>
-      <input type="number" id="amount" placeholder="Amount" min="0">
-      <div class="selects">
+      <h2>CURRENCY CONVERTER</h2>
+      <div class="currency-inputs">
+        <input type="number" id="amount" placeholder="Amount" min="0">
         <select id="fromCurrency"></select>
         <select id="toCurrency"></select>
+        <button id="convertBtn">Convert</button>
       </div>
-      <button id="convertBtn">Convert</button>
-      <div id="conversionResult"></div>
-      <small id="lastUpdated"></small>
+      <div class="conversion-result">
+        <p id="exchangeRate"></p>
+        <p id="convertedAmount"></p>
+        <p id="lastUpdated"></p>
+      </div>
     </div>
 
+    <!-- Footer -->
     <footer>
       SMORK'S TECH © All Rights Reserved 2026
     </footer>
