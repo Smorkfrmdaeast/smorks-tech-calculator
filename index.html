@@ -1,106 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMORK'S TECH Calculator</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMORK'S TECH Calculator</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
+body{
+background:#0a0f2c;
+color:#fff;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+min-height:100vh;
+padding:15px;
+}
+
+.container{
+width:100%;
+max-width:450px;
+}
+
+h1{
+text-align:center;
+margin-bottom:15px;
+font-size:20px;
+}
+
+.toggle{
+display:flex;
+gap:10px;
+margin-bottom:10px;
+}
+
+.toggle button{
+flex:1;
+padding:8px;
+border:none;
+border-radius:8px;
+background:#1a237e;
+color:white;
+cursor:pointer;
+}
+
+.toggle button.active{
+background:#4169e1;
+}
+
+.display{
+background:#11184d;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.display input{
+width:100%;
+background:none;
+border:none;
+color:white;
+font-size:28px;
+text-align:right;
+outline:none;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+margin-bottom:10px;
+}
+
+button{
+padding:15px;
+border:none;
+border-radius:8px;
+background:#1e2a78;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+button.operator{background:#0d1b5c}
+button.equal{background:#4169e1}
+
+.hidden{display:none}
+
+.converter{
+background:#11184d;
+padding:10px;
+border-radius:10px;
+}
+
+.converter input,.converter select{
+width:100%;
+padding:8px;
+margin:5px 0;
+border:none;
+border-radius:6px;
+}
+
+footer{
+text-align:center;
+margin-top:15px;
+font-size:12px;
+opacity:0.7;
+}
+</style>
 </head>
+
 <body>
-  <div class="calculator-container">
-    <header>
-      <h1>SMORK'S TECH CALCULATOR</h1>
-      <div class="mode-toggle">
-        <button id="normalModeBtn" class="active">Normal</button>
-        <button id="scientificModeBtn">Scientific</button>
-      </div>
-    </header>
 
-    <!-- Display -->
-    <div class="display">
-      <div id="history" class="history"></div>
-      <input type="text" id="inputDisplay" readonly placeholder="0">
-    </div>
+<div class="container">
 
-    <!-- Normal Calculator -->
-    <div id="normalCalculator" class="buttons-grid normal-mode">
-      <button class="btn function" data-value="AC">AC</button>
-      <button class="btn function" data-value="DEL">DEL</button>
-      <button class="btn operator" data-value="%">%</button>
-      <button class="btn operator" data-value="/">÷</button>
-      <button class="btn number" data-value="7">7</button>
-      <button class="btn number" data-value="8">8</button>
-      <button class="btn number" data-value="9">9</button>
-      <button class="btn operator" data-value="*">×</button>
-      <button class="btn number" data-value="4">4</button>
-      <button class="btn number" data-value="5">5</button>
-      <button class="btn number" data-value="6">6</button>
-      <button class="btn operator" data-value="-">−</button>
-      <button class="btn number" data-value="1">1</button>
-      <button class="btn number" data-value="2">2</button>
-      <button class="btn number" data-value="3">3</button>
-      <button class="btn operator" data-value="+">+</button>
-      <button class="btn number" data-value="0">0</button>
-      <button class="btn number" data-value=".">.</button>
-      <button class="btn equal" data-value="=">=</button>
-    </div>
+<h1>SMORK'S TECH CALCULATOR</h1>
 
-    <!-- Scientific Calculator -->
-    <div id="scientificCalculator" class="buttons-grid scientific-mode hidden">
-      <button class="btn function" data-value="AC">AC</button>
-      <button class="btn function" data-value="DEL">DEL</button>
-      <button class="btn operator" data-value="(">(</button>
-      <button class="btn operator" data-value=")">)</button>
-      <button class="btn function" data-value="sin(">sin</button>
-      <button class="btn function" data-value="cos(">cos</button>
-      <button class="btn function" data-value="tan(">tan</button>
-      <button class="btn operator" data-value="^">xʸ</button>
-      <button class="btn function" data-value="log(">log</button>
-      <button class="btn function" data-value="ln(">ln</button>
-      <button class="btn function" data-value="√(">√</button>
-      <button class="btn operator" data-value="^2">x²</button>
-      <button class="btn number" data-value="7">7</button>
-      <button class="btn number" data-value="8">8</button>
-      <button class="btn number" data-value="9">9</button>
-      <button class="btn operator" data-value="/">÷</button>
-      <button class="btn number" data-value="4">4</button>
-      <button class="btn number" data-value="5">5</button>
-      <button class="btn number" data-value="6">6</button>
-      <button class="btn operator" data-value="*">×</button>
-      <button class="btn number" data-value="1">1</button>
-      <button class="btn number" data-value="2">2</button>
-      <button class="btn number" data-value="3">3</button>
-      <button class="btn operator" data-value="-">−</button>
-      <button class="btn number" data-value="0">0</button>
-      <button class="btn number" data-value=".">.</button>
-      <button class="btn equal" data-value="=">=</button>
-      <button class="btn operator" data-value="+">+</button>
-      <button class="btn constant" data-value="Math.PI">π</button>
-      <button class="btn constant" data-value="Math.E">e</button>
-    </div>
+<div class="toggle">
+<button id="normalBtn" class="active">Normal</button>
+<button id="sciBtn">Scientific</button>
+</div>
 
-    <!-- Currency Converter -->
-    <div class="currency-converter">
-      <h2>CURRENCY CONVERTER</h2>
-      <div class="currency-inputs">
-        <input type="number" id="amount" placeholder="Amount" min="0">
-        <select id="fromCurrency"></select>
-        <select id="toCurrency"></select>
-        <button id="convertBtn">Convert</button>
-      </div>
-      <div class="conversion-result">
-        <p id="exchangeRate"></p>
-        <p id="convertedAmount"></p>
-        <p id="lastUpdated"></p>
-      </div>
-    </div>
+<div class="display">
+<input type="text" id="screen" readonly value="0">
+</div>
 
-    <footer>
-      SMORK'S TECH © All Rights Reserved 2026
-    </footer>
-  </div>
+<!-- NORMAL -->
+<div id="normal" class="grid">
+<button onclick="clearScreen()">AC</button>
+<button onclick="del()">DEL</button>
+<button class="operator" onclick="add('%')">%</button>
+<button class="operator" onclick="add('/')">÷</button>
 
-  <script src="script.js"></script>
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button class="operator" onclick="add('*')">×</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button class="operator" onclick="add('-')">−</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button class="operator" onclick="add('+')">+</button>
+
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+</div>
+
+<!-- SCIENTIFIC -->
+<div id="scientific" class="grid hidden">
+<button onclick="add('Math.sin(rad(')">sin</button>
+<button onclick="add('Math.cos(rad(')">cos</button>
+<button onclick="add('Math.tan(rad(')">tan</button>
+<button onclick="add('Math.sqrt(')">√</button>
+
+<button onclick="add('Math.log10(')">log</button>
+<button onclick="add('Math.log(')">ln</button>
+<button onclick="add('**2')">x²</button>
+<button onclick="add('**')">xʸ</button>
+
+<button onclick="add('Math.PI')">π</button>
+<button onclick="add('Math.E')">e</button>
+<button onclick="add('(')">(</button>
+<button onclick="add(')')">)</button>
+
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button class="operator" onclick="add('/')">÷</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button class="operator" onclick="add('*')">×</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button class="operator" onclick="add('-')">−</button>
+
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+<button class="equal" onclick="calculate()">=</button>
+<button class="operator" onclick="add('+')">+</button>
+</div>
+
+<!-- CURRENCY -->
+<div class="converter">
+<h3>Currency Converter</h3>
+<input type="number" id="amount" placeholder="Amount">
+<select id="from"></select>
+<select id="to"></select>
+<button onclick="convert()">Convert</button>
+<p id="result"></p>
+</div>
+
+<footer>
+SMORK'S TECH © All Rights Reserved 2026
+</footer>
+
+</div>
+
+<script>
+let screen=document.getElementById("screen");
+
+function add(val){
+if(screen.value==="0") screen.value="";
+screen.value+=val;
+}
+
+function clearScreen(){screen.value="0";}
+function del(){screen.value=screen.value.slice(0,-1)||"0";}
+
+function rad(x){return x*Math.PI/180;}
+
+function calculate(){
+try{
+screen.value=Function("return "+screen.value)();
+}catch{
+screen.value="Error";
+}
+}
+
+document.getElementById("normalBtn").onclick=()=>{
+normal.classList.remove("hidden");
+scientific.classList.add("hidden");
+normalBtn.classList.add("active");
+sciBtn.classList.remove("active");
+}
+
+document.getElementById("sciBtn").onclick=()=>{
+normal.classList.add("hidden");
+scientific.classList.remove("hidden");
+sciBtn.classList.add("active");
+normalBtn.classList.remove("active");
+}
+
+async function loadCurrencies(){
+let res=await fetch("https://open.er-api.com/v6/latest/USD");
+let data=await res.json();
+let list=Object.keys(data.rates);
+let from=document.getElementById("from");
+let to=document.getElementById("to");
+list.forEach(c=>{
+from.innerHTML+=`<option>${c}</option>`;
+to.innerHTML+=`<option>${c}</option>`;
+});
+from.value="USD";
+to.value="EUR";
+}
+loadCurrencies();
+
+async function convert(){
+let amt=document.getElementById("amount").value;
+let from=document.getElementById("from").value;
+let to=document.getElementById("to").value;
+
+let res=await fetch(`https://open.er-api.com/v6/latest/${from}`);
+let data=await res.json();
+let rate=data.rates[to];
+document.getElementById("result").innerText=
+`${amt} ${from} = ${(amt*rate).toFixed(2)} ${to}`;
+}
+</script>
+
 </body>
-          </html>
+</html>
