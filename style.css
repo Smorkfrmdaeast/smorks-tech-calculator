@@ -1,6 +1,6 @@
-/* ==============================
+/* ================================
    GLOBAL RESET
-============================== */
+================================ */
 * {
     margin: 0;
     padding: 0;
@@ -8,284 +8,280 @@
 }
 
 html, body {
-    width: 100%;
     height: 100%;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #001233, #001845, #002855);
-    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    background: #0A0F1C; /* Deep Midnight Base */
+    color: #E5E7EB;
     display: flex;
     flex-direction: column;
 }
 
-/* ==============================
-   MAIN CONTAINER
-============================== */
-.container {
+/* ================================
+   APP CONTAINER
+================================ */
+.app {
     flex: 1;
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 24px 18px;
     display: flex;
     flex-direction: column;
-    margin: 10px auto;
-    width: 95%;
-    max-width: 420px;
-    padding: 20px;
-    border-radius: 25px;
-    background: rgba(0, 40, 100, 0.35);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 170, 255, 0.2);
-    box-shadow: 0 0 25px rgba(0, 170, 255, 0.5),
-                inset 0 0 10px rgba(0, 170, 255, 0.2);
 }
 
-/* ==============================
-   TABS
-============================== */
-.tabs {
+/* ================================
+   HEADER
+================================ */
+.app-header {
+    margin-bottom: 20px;
+}
+
+.app-header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #F9FAFB;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #94A3B8;
+    margin-top: 4px;
+}
+
+/* ================================
+   TAB SWITCH
+================================ */
+.tab-switch {
     display: flex;
-    justify-content: space-between;
+    background: #111827;
+    border-radius: 10px;
+    padding: 4px;
     margin-bottom: 20px;
 }
 
 .tab {
     flex: 1;
-    padding: 14px;
-    background: transparent;
     border: none;
-    color: #8ecfff;
-    font-weight: 600;
+    background: transparent;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #94A3B8;
     cursor: pointer;
-    transition: 0.3s ease;
-    border-bottom: 2px solid transparent;
-    font-size: 16px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
 }
 
 .tab.active {
-    color: #00aaff;
-    border-bottom: 2px solid #00aaff;
+    background: #1E293B;
+    color: #2563EB; /* Royal Blue Accent */
 }
 
-/* ==============================
-   CONTENT
-============================== */
-.content {
+/* ================================
+   TAB CONTENT
+================================ */
+.tab-content {
     display: none;
-    animation: fadeIn 0.3s ease forwards;
-}
-
-.content.active {
-    display: flex;
     flex-direction: column;
-    flex: 1;
 }
 
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(5px);}
-    to {opacity: 1; transform: translateY(0);}
+.tab-content.active {
+    display: flex;
 }
 
-/* ==============================
+/* ================================
    DISPLAY
-============================== */
+================================ */
 .display {
-    background: rgba(0, 0, 0, 0.45);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: inset 0 0 15px rgba(0, 170, 255, 0.3);
+    background: #111827;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 #history {
-    font-size: 14px;
-    color: #8ecfff;
-    min-height: 20px;
+    font-size: 13px;
+    color: #64748B;
     text-align: right;
+    min-height: 18px;
 }
 
 #result {
     width: 100%;
-    background: transparent;
     border: none;
-    outline: none;
-    color: #ffffff;
-    font-size: 36px;
-    text-align: right;
+    background: transparent;
+    color: #F9FAFB;
+    font-size: 34px;
     font-weight: 600;
+    text-align: right;
+    outline: none;
 }
 
-/* ==============================
-   BUTTON GRID
-============================== */
-.buttons {
+/* ================================
+   KEYPAD
+================================ */
+.keypad {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
-    margin-bottom: 20px;
 }
 
+/* Base Buttons */
 .btn {
-    padding: 20px;
-    font-size: 20px;
-    border-radius: 18px;
+    padding: 18px 0;
+    font-size: 18px;
+    border-radius: 12px;
     border: none;
     cursor: pointer;
-    background: rgba(0, 120, 255, 0.4);
-    color: white;
-    transition: 0.2s ease;
-    box-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+    background: #1E293B; /* Slightly lighter than background */
+    color: #E5E7EB;
+    transition: all 0.2s ease;
 }
 
+/* Subtle Hover */
 .btn:hover {
-    background: #0099ff;
-    transform: translateY(-3px);
-    box-shadow: 0 0 25px rgba(0, 170, 255, 0.8);
+    background: #243244;
 }
 
+/* Click effect */
 .btn:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
 }
 
+/* Operators (Darker Shade) */
 .operator {
-    background: rgba(0, 80, 180, 0.6);
+    background: #0F172A;
+    color: #60A5FA;
 }
 
+.operator:hover {
+    background: #162033;
+}
+
+/* Control Buttons (C & ⌫) */
+.control {
+    background: #111827;
+    color: #94A3B8;
+}
+
+/* Equal Button (Solid Royal Blue) */
 .equal {
-    background: #00aaff;
-    box-shadow: 0 0 25px rgba(0, 200, 255, 0.8);
+    background: #2563EB; /* Royal Blue */
+    color: white;
+    font-weight: 600;
 }
 
+.equal:hover {
+    background: #1D4ED8;
+}
+
+/* Zero Button spans two columns */
 .zero {
     grid-column: span 2;
 }
 
-/* ==============================
-   CURRENCY CONVERTER
-============================== */
-.converter-box {
+/* ================================
+   CONVERTER
+================================ */
+.converter-card {
+    background: #111827;
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
 }
 
 input, select {
-    padding: 16px;
-    border-radius: 16px;
+    background: #1E293B;
     border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 14px;
+    color: #E5E7EB;
     outline: none;
-    font-size: 16px;
-    background: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-    box-shadow: inset 0 0 12px rgba(0, 170, 255, 0.3);
 }
 
 input::placeholder {
-    color: #8ecfff;
+    color: #64748B;
 }
 
-select option {
-    background: #001f3f;
-}
-
-.currency-select {
+.currency-row {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     gap: 10px;
 }
 
-.currency-select .arrow {
-    color: #00aaff;
-    font-weight: 700;
+.arrow {
+    color: #2563EB;
+    font-weight: 600;
 }
 
-/* Convert Button */
 #convertBtn {
-    padding: 16px;
-    border-radius: 18px;
+    background: #2563EB;
     border: none;
-    background: #00aaff;
-    color: white;
+    border-radius: 10px;
+    padding: 14px;
     font-weight: 600;
+    color: white;
     cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
+    transition: all 0.25s ease;
 }
 
 #convertBtn:hover {
-    background: #0099ff;
-    transform: translateY(-2px);
+    background: #1D4ED8;
 }
 
-/* Conversion Result */
-.conversion-result {
-    margin-top: 15px;
-    text-align: center;
+/* Conversion Output */
+.conversion-output {
+    margin-top: 6px;
 }
 
 #rateInfo {
-    font-size: 14px;
-    color: #8ecfff;
+    font-size: 13px;
+    color: #94A3B8;
 }
 
 #convertedAmount {
-    font-size: 24px;
-    margin-top: 10px;
+    font-size: 20px;
     font-weight: 600;
-    color: #00c3ff;
+    margin-top: 6px;
+    color: #60A5FA;
 }
 
 #lastUpdated {
     font-size: 12px;
-    color: #6ec6ff;
+    color: #64748B;
+    margin-top: 4px;
 }
 
-/* ==============================
+/* ================================
    FOOTER
-============================== */
-footer {
+================================ */
+.footer {
     text-align: center;
-    padding: 18px;
-    background: #000814;
-    color: #00aaff;
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 14px;
-    box-shadow: 0 -5px 20px rgba(0, 170, 255, 0.4);
+    padding: 16px;
+    font-size: 12px;
+    background: #0F172A;
+    color: #64748B;
 }
 
-/* ==============================
-   RESPONSIVE MOBILE FIRST
-============================== */
+/* ================================
+   RESPONSIVE
+================================ */
 @media (max-width: 480px) {
 
-    .container {
-        margin: 5px;
-        padding: 15px;
-        width: 100%;
-        height: 100%;
-        border-radius: 25px;
+    .app {
+        padding: 20px 14px;
     }
 
     #result {
-        font-size: 32px;
+        font-size: 30px;
     }
 
     .btn {
-        padding: 18px;
-        font-size: 18px;
+        padding: 16px 0;
+        font-size: 16px;
     }
-
-    .tab {
-        padding: 12px;
-        font-size: 15px;
-    }
-
-    .converter-box input,
-    .converter-box select,
-    #convertBtn {
-        font-size: 15px;
-        padding: 14px;
-    }
-
-    #convertedAmount {
-        font-size: 22px;
-    }
-}
+   }
