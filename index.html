@@ -2,103 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-
-    <title>SMORK'S TECH Multi-Mode Calculator</title>
-
-    <meta name="description"
-          content="SMORK'S TECH Multi-Mode Calculator. Professional Normal and Scientific calculator built for mobile, desktop, iOS, Android and tablet devices. © 2026 SMORK'S TECH.">
-
-    <!-- Theme Color (for mobile browsers) -->
-    <meta name="theme-color" content="#0A0F1C">
-
-    <!-- Font -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMORK'S TECH Calculator</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <div class="app full-screen">
 
-<div class="app">
+        <!-- HEADER -->
+        <header class="app-header">
+            <h1>SMORK'S TECH Calculator</h1>
+            <p class="subtitle">Multi-Mode: Normal & Scientific</p>
+        </header>
 
-    <!-- HEADER -->
-    <header class="app-header">
-        <h1>SMORK'S TECH</h1>
-        <p class="subtitle">Multi-Mode Calculator</p>
-    </header>
-
-
-    <!-- MODE SWITCH -->
-    <div class="mode-switch">
-        <button id="normalModeBtn" class="mode-btn active">Normal</button>
-        <button id="scientificModeBtn" class="mode-btn">Scientific</button>
-    </div>
-
-
-    <!-- CALCULATOR -->
-    <main class="calculator-container">
-
-        <!-- DISPLAY -->
-        <div class="display">
-            <div id="history"></div>
-            <input type="text" id="display" placeholder="0" readonly>
+        <!-- MODE SWITCH -->
+        <div class="mode-switch">
+            <button class="mode-btn active" id="normalModeBtn">Normal</button>
+            <button class="mode-btn" id="scientificModeBtn">Scientific</button>
         </div>
 
+        <!-- DISPLAY PANEL -->
+        <div class="display">
+            <div id="history"></div>
+            <input type="text" id="display" readonly>
+        </div>
 
-        <!-- SCIENTIFIC PANEL (Hidden by default) -->
-        <div id="scientificPanel" class="scientific-panel hidden">
-
+        <!-- SCIENTIFIC PANEL -->
+        <div class="scientific-panel hidden" id="scientificPanel">
             <button class="btn sci" data-value="sin(">sin</button>
             <button class="btn sci" data-value="cos(">cos</button>
             <button class="btn sci" data-value="tan(">tan</button>
             <button class="btn sci" data-value="log(">log</button>
             <button class="btn sci" data-value="ln(">ln</button>
-            <button class="btn sci" data-value="sqrt(">√</button>
-
+            <button class="btn sci" data-value="√">√</button>
             <button class="btn sci" data-value="^">xʸ</button>
-            <button class="btn sci" data-value="^2">x²</button>
+            <button class="btn sci" data-value="π">π</button>
+            <button class="btn sci" data-value="e">e</button>
             <button class="btn sci" data-value="(">(</button>
             <button class="btn sci" data-value=")">)</button>
-            <button class="btn sci" data-value="pi">π</button>
-            <button class="btn sci" data-value="e">e</button>
-
         </div>
-
 
         <!-- KEYPAD -->
         <div class="keypad">
-
-            <button class="btn control" data-value="clear">C</button>
-            <button class="btn control" data-value="delete">⌫</button>
+            <button class="btn control" data-value="clear">AC</button>
+            <button class="btn control" data-value="delete">DEL</button>
             <button class="btn operator" data-value="%">%</button>
             <button class="btn operator" data-value="/">÷</button>
 
-            <button class="btn number" data-value="7">7</button>
-            <button class="btn number" data-value="8">8</button>
-            <button class="btn number" data-value="9">9</button>
+            <button class="btn" data-value="7">7</button>
+            <button class="btn" data-value="8">8</button>
+            <button class="btn" data-value="9">9</button>
             <button class="btn operator" data-value="*">×</button>
 
-            <button class="btn number" data-value="4">4</button>
-            <button class="btn number" data-value="5">5</button>
-            <button class="btn number" data-value="6">6</button>
+            <button class="btn" data-value="4">4</button>
+            <button class="btn" data-value="5">5</button>
+            <button class="btn" data-value="6">6</button>
             <button class="btn operator" data-value="-">−</button>
 
-            <button class="btn number" data-value="1">1</button>
-            <button class="btn number" data-value="2">2</button>
-            <button class="btn number" data-value="3">3</button>
+            <button class="btn" data-value="1">1</button>
+            <button class="btn" data-value="2">2</button>
+            <button class="btn" data-value="3">3</button>
             <button class="btn operator" data-value="+">+</button>
 
-            <button class="btn number zero" data-value="0">0</button>
-            <button class="btn number" data-value=".">.</button>
+            <button class="btn zero" data-value="0">0</button>
+            <button class="btn" data-value=".">.</button>
             <button class="btn equal" data-value="=">=</button>
-
         </div>
 
-    </main>
+        <!-- FOOTER -->
+        <footer class="footer">
+            SMORK'S TECH &copy; All Rights Reserved 2026
+        </footer>
 
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 </div>
 
 
