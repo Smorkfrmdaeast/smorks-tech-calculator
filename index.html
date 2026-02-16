@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SMORK'S TECH Calculator</title>
-
     <meta name="description"
-        content="SMORK'S TECH Calculator — A professional, mobile-first calculator and currency converter with a deep midnight blue interface and royal blue accents. Clean, mature and app-store ready. © 2026 SMORK'S TECH." />
+        content="SMORK'S TECH Calculator — Mobile-first, professional calculator and currency converter. Deep Midnight Blue interface with Royal Blue accents. App-store ready and real-world usable. © 2026 SMORK'S TECH." />
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -20,8 +19,8 @@
 
         <!-- HEADER -->
         <header class="app-header">
-            <h1>Calculator</h1>
-            <p class="subtitle">Professional Financial Tool</p>
+            <h1>SMORK'S TECH</h1>
+            <p class="subtitle">Calculator & Currency Converter</p>
         </header>
 
         <!-- TAB SWITCH -->
@@ -42,29 +41,29 @@
                 </div>
 
                 <div class="keypad">
-                    <button class="btn control">C</button>
-                    <button class="btn control">⌫</button>
-                    <button class="btn operator">%</button>
-                    <button class="btn operator">÷</button>
+                    <button class="btn control" data-action="clear">C</button>
+                    <button class="btn control" data-action="delete">⌫</button>
+                    <button class="btn operator" data-action="%">%</button>
+                    <button class="btn operator" data-action="/">÷</button>
 
-                    <button class="btn">7</button>
-                    <button class="btn">8</button>
-                    <button class="btn">9</button>
-                    <button class="btn operator">×</button>
+                    <button class="btn number" data-action="7">7</button>
+                    <button class="btn number" data-action="8">8</button>
+                    <button class="btn number" data-action="9">9</button>
+                    <button class="btn operator" data-action="*">×</button>
 
-                    <button class="btn">4</button>
-                    <button class="btn">5</button>
-                    <button class="btn">6</button>
-                    <button class="btn operator">−</button>
+                    <button class="btn number" data-action="4">4</button>
+                    <button class="btn number" data-action="5">5</button>
+                    <button class="btn number" data-action="6">6</button>
+                    <button class="btn operator" data-action="-">−</button>
 
-                    <button class="btn">1</button>
-                    <button class="btn">2</button>
-                    <button class="btn">3</button>
-                    <button class="btn operator">+</button>
+                    <button class="btn number" data-action="1">1</button>
+                    <button class="btn number" data-action="2">2</button>
+                    <button class="btn number" data-action="3">3</button>
+                    <button class="btn operator" data-action="+">+</button>
 
-                    <button class="btn zero">0</button>
-                    <button class="btn">.</button>
-                    <button class="btn equal">=</button>
+                    <button class="btn number zero" data-action="0">0</button>
+                    <button class="btn number" data-action=".">.</button>
+                    <button class="btn equal" data-action="=">=</button>
                 </div>
 
             </section>
@@ -73,7 +72,6 @@
             <section class="tab-content" id="converterTab">
 
                 <div class="converter-card">
-
                     <input type="number" id="amount" placeholder="Enter amount" min="0" step="any">
 
                     <div class="currency-row">
@@ -89,7 +87,6 @@
                         <div id="convertedAmount"></div>
                         <div id="lastUpdated"></div>
                     </div>
-
                 </div>
 
             </section>
@@ -105,6 +102,5 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
-
 </body>
-</html>
+    </html>
