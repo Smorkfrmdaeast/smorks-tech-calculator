@@ -6,19 +6,25 @@
 
 const display = document.getElementById("display");
 const buttons = document.querySelectorAll(".btn");
-const modeToggle = document.getElementById("modeToggle");
-const calculator = document.getElementById("calculator");
+const normalModeBtn = document.getElementById("normalModeBtn");
+const scientificModeBtn = document.getElementById("scientificModeBtn");
+const scientificPanel = document.getElementById("scientificPanel");
 
 let currentInput = "";
-let scientificMode = false;
 
 // ================================
-// MODE TOGGLE
+// MODE TOGGLE LOGIC
 // ================================
-modeToggle.addEventListener("click", () => {
-    scientificMode = !scientificMode;
-    calculator.classList.toggle("scientific");
-    modeToggle.textContent = scientificMode ? "Normal Mode" : "Scientific Mode";
+normalModeBtn.addEventListener("click", () => {
+    scientificPanel.classList.add("hidden");
+    normalModeBtn.classList.add("active");
+    scientificModeBtn.classList.remove("active");
+});
+
+scientificModeBtn.addEventListener("click", () => {
+    scientificPanel.classList.remove("hidden");
+    scientificModeBtn.classList.add("active");
+    normalModeBtn.classList.remove("active");
 });
 
 // ================================
@@ -40,11 +46,11 @@ function handleInput(value) {
 
     switch (value) {
 
-        case "AC":
+        case "clear":
             currentInput = "";
             break;
 
-        case "DEL":
+        case "delete":
             currentInput = currentInput.slice(0, -1);
             break;
 
@@ -53,6 +59,7 @@ function handleInput(value) {
             return;
 
         case "π":
+        case "pi":
             currentInput += "Math.PI";
             break;
 
@@ -61,26 +68,21 @@ function handleInput(value) {
             break;
 
         case "√":
+        case "sqrt(":
             currentInput += "Math.sqrt(";
             break;
 
-        case "sin":
-            currentInput += "sin(";
+        case "sin(":
+        case "cos(":
+        case "tan(":
+            currentInput += value;
             break;
 
-        case "cos":
-            currentInput += "cos(";
-            break;
-
-        case "tan":
-            currentInput += "tan(";
-            break;
-
-        case "log":
+        case "log(":
             currentInput += "log10(";
             break;
 
-        case "ln":
+        case "ln(":
             currentInput += "Math.log(";
             break;
 
