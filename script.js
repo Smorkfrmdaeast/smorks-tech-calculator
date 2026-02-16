@@ -1,209 +1,171 @@
-/* =========================================
-   SMORK'S TECH CALCULATOR + CONVERTER
-   © 2026 ALL RIGHTS RESERVED
-========================================= */
+// ==============================
+// SMORK'S TECH CALCULATOR & CONVERTER
+// © 2026 SMORK'S TECH — All Rights Reserved
+// ==============================
 
-/* ===============================
-   TAB SWITCHING
-=============================== */
-const tabs = document.querySelectorAll(".tab");
-const contents = document.querySelectorAll(".content");
+// ------------------------------
+// TAB SWITCHING
+// ------------------------------
+const tabs = document.querySelectorAll('.tab');
+const contents = document.querySelectorAll('.content');
 
 tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("active"));
-        contents.forEach(c => c.classList.remove("active"));
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
 
-        tab.classList.add("active");
-        document.getElementById(tab.dataset.tab).classList.add("active");
+        contents.forEach(c => c.classList.remove('active'));
+        document.getElementById(tab.dataset.tab).classList.add('active');
     });
 });
 
-/* ===============================
-   CALCULATOR LOGIC
-=============================== */
+// ------------------------------
+// CALCULATOR LOGIC
+// ------------------------------
+const result = document.getElementById('result');
+const history = document.getElementById('history');
+const buttons = document.querySelectorAll('.buttons .btn');
 
-const resultInput = document.getElementById("result");
-const historyDisplay = document.getElementById("history");
-const buttons = document.querySelectorAll(".btn");
+let currentInput = '';
+let prevInput = '';
+let operator = '';
 
-let currentInput = "";
-
-/* Prevent multiple decimals */
-function canAddDecimal() {
-    const parts = currentInput.split(/[\+\−\×\÷]/);
-    const lastNumber = parts[parts.length - 1];
-    return !lastNumber.includes(".");
-}
-
-/* Safe evaluation without eval */
-function safeEvaluate(expression) {
-    const formatted = expression
-        .replace(/×/g, "*")
-        .replace(/÷/g, "/")
-        .replace(/−/g, "-");
-
-    if (/\/0(?!\d)/.test(formatted)) {
-        throw new Error("Cannot divide by zero");
-    }
-
-    return Function(`"use strict"; return (${formatted})`)();
-}
-
-function handleInput(value) {
-
-    if (value === "C") {
-        currentInput = "";
-        resultInput.value = "";
-        historyDisplay.textContent = "";
-        return;
-    }
-
-    if (value === "⌫") {
-        currentInput = currentInput.slice(0, -1);
-        resultInput.value = currentInput;
-        return;
-    }
-
-    if (value === "=") {
-        if (!currentInput) return;
-
-        try {
-            const answer = safeEvaluate(currentInput);
-            historyDisplay.textContent = currentInput + " =";
-            resultInput.value = answer;
-            currentInput = answer.toString();
-        } catch {
-            resultInput.value = "Error";
-            currentInput = "";
-        }
-        return;
-    }
-
-    if (value === ".") {
-        if (!canAddDecimal()) return;
-    }
-
-    const operators = ["+", "−", "×", "÷", "%"];
-
-    if (operators.includes(value)) {
-        if (!currentInput || operators.includes(currentInput.slice(-1))) return;
-    }
-
-    currentInput += value;
-    resultInput.value = currentInput;
-}
-
-/* Button Clicks */
 buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        handleInput(button.textContent);
+    button.addEventListener('click', () => {
+        const value = button.textContent;
+
+        if (value === 'C') {
+            currentInput = '';
+            prevInput = '';
+            operator = '';
+            result.value = '';
+            history.textContent = '';
+        } else if (value === '⌫') {
+            currentInput = currentInput.slice(0, -1);
+            result.value = currentInput;
+        } else if (value === '=') {
+            if (currentInput === '' || operator === '') return;
+            calculate();
+        } else if (['+', '−', '×', '÷', '%'].includes(value)) {
+            if (currentInput === '') return;
+            if (prevInput !== '') calculate();
+            operator = value;
+            prevInput = currentInput;
+            currentInput = '';
+            history.textContent = `${prevInput} ${operator}`;
+        } else {
+            // prevent multiple decimals
+            if (value === '.' && currentInput.includes('.')) return;
+            currentInput += value;
+            result.value = currentInput;
+        }
     });
 });
 
-/* ===============================
-   KEYBOARD SUPPORT
-=============================== */
-document.addEventListener("keydown", (e) => {
+function calculate() {
+    let a = parseFloat(prevInput);
+    let b = parseFloat(currentInput);
+    let res = 0;
 
-    if (!isNaN(e.key)) handleInput(e.key);
-    if (e.key === ".") handleInput(".");
-    if (e.key === "+") handleInput("+");
-    if (e.key === "-") handleInput("−");
-    if (e.key === "*") handleInput("×");
-    if (e.key === "/") handleInput("÷");
+    switch (operator) {
+        case '+': res = a + b; break;
+        case '−': res = a - b; break;
+        case '×': res = a * b; break;
+        case '÷': 
+            if (b === 0) {
+                res = 'Error';
+                break;
+            }
+            res = a / b; 
+            break;
+        case '%': res = (a * b) / 100; break;
+        default: res = 0;
+    }
 
-    if (e.key === "Enter") handleInput("=");
-    if (e.key === "Backspace") handleInput("⌫");
-    if (e.key === "Escape") handleInput("C");
+    result.value = res;
+    history.textContent = `${prevInput} ${operator} ${currentInput} =`;
+    currentInput = res.toString();
+    prevInput = '';
+    operator = '';
+}
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+    const keyMap = {
+        '0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9',
+        '+':'+','-':'−','*':'×','/':'÷','.':'.','Enter':'=','Backspace':'⌫','Delete':'C'
+    };
+    const key = keyMap[e.key];
+    if (key) {
+        buttons.forEach(btn => { if (btn.textContent === key) btn.click(); });
+    }
 });
 
-/* ===============================
-   CURRENCY CONVERTER
-=============================== */
+// ------------------------------
+// CURRENCY CONVERTER
+// ------------------------------
+const apiKey = '008c03e87fd9dfb21cd8cd89';
+const fromCurrency = document.getElementById('fromCurrency');
+const toCurrency = document.getElementById('toCurrency');
+const amountInput = document.getElementById('amount');
+const convertBtn = document.getElementById('convertBtn');
+const convertedAmount = document.getElementById('convertedAmount');
+const rateInfo = document.getElementById('rateInfo');
+const lastUpdated = document.getElementById('lastUpdated');
 
-const apiKey = "008c03e87fd9dfb21cd8cd89";  // Your API Key
+let rates = {};
 
-const amountInput = document.getElementById("amount");
-const fromCurrency = document.getElementById("fromCurrency");
-const toCurrency = document.getElementById("toCurrency");
-const convertBtn = document.getElementById("convertBtn");
-
-const rateInfo = document.getElementById("rateInfo");
-const convertedAmount = document.getElementById("convertedAmount");
-const lastUpdated = document.getElementById("lastUpdated");
-
-/* Load currency list */
-async function loadCurrencies() {
+// Fetch exchange rates
+async function fetchRates() {
     try {
-        const response = await fetch(
-            `https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`
-        );
-
-        const data = await response.json();
-
-        if (data.result !== "success") {
-            throw new Error("API Error");
+        rateInfo.textContent = 'Loading rates...';
+        const res = await fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/USD`);
+        const data = await res.json();
+        if (data.result === 'success') {
+            rates = data.conversion_rates;
+            populateCurrencies();
+            rateInfo.textContent = 'Rates loaded successfully';
+        } else {
+            rateInfo.textContent = 'Failed to load rates';
         }
-
-        const currencies = Object.keys(data.conversion_rates);
-
-        currencies.forEach(currency => {
-            fromCurrency.innerHTML += `<option value="${currency}">${currency}</option>`;
-            toCurrency.innerHTML += `<option value="${currency}">${currency}</option>`;
-        });
-
-        fromCurrency.value = "USD";
-        toCurrency.value = "EUR";
-
-    } catch (error) {
-        convertedAmount.textContent = "Failed to load currencies.";
+    } catch (err) {
+        console.error(err);
+        rateInfo.textContent = 'Error fetching rates';
     }
 }
 
-/* Convert currency */
-async function convertCurrency() {
+function populateCurrencies() {
+    fromCurrency.innerHTML = '';
+    toCurrency.innerHTML = '';
+    Object.keys(rates).forEach(curr => {
+        const optionFrom = document.createElement('option');
+        optionFrom.value = curr;
+        optionFrom.textContent = curr;
+        fromCurrency.appendChild(optionFrom);
 
+        const optionTo = document.createElement('option');
+        optionTo.value = curr;
+        optionTo.textContent = curr;
+        toCurrency.appendChild(optionTo);
+    });
+
+    fromCurrency.value = 'USD';
+    toCurrency.value = 'EUR';
+}
+
+// Conversion
+convertBtn.addEventListener('click', () => {
+    const from = fromCurrency.value;
+    const to = toCurrency.value;
     const amount = parseFloat(amountInput.value);
 
-    if (!amount || amount <= 0) {
-        alert("Enter a valid amount");
-        return;
-    }
+    if (!amount || !rates[from] || !rates[to]) return;
 
-    convertedAmount.textContent = "Converting...";
-    rateInfo.textContent = "";
-    lastUpdated.textContent = "";
+    const converted = (amount / rates[from]) * rates[to];
+    convertedAmount.textContent = `${amount.toFixed(2)} ${from} = ${converted.toFixed(2)} ${to}`;
+    rateInfo.textContent = `1 ${from} = ${(rates[to]/rates[from]).toFixed(4)} ${to}`;
+    lastUpdated.textContent = `Last updated: ${new Date().toLocaleString()}`;
+});
 
-    try {
-        const response = await fetch(
-            `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency.value}`
-        );
-
-        const data = await response.json();
-
-        if (data.result !== "success") {
-            throw new Error("Conversion failed");
-        }
-
-        const rate = data.conversion_rates[toCurrency.value];
-        const result = (amount * rate).toFixed(2);
-
-        rateInfo.textContent =
-            `1 ${fromCurrency.value} = ${rate} ${toCurrency.value}`;
-
-        convertedAmount.textContent =
-            `${amount} ${fromCurrency.value} = ${result} ${toCurrency.value}`;
-
-        lastUpdated.textContent =
-            `Last Updated: ${data.time_last_update_utc}`;
-
-    } catch (error) {
-        convertedAmount.textContent = "Conversion failed. Try again.";
-    }
-}
-
-convertBtn.addEventListener("click", convertCurrency);
-
-/* Load currencies when page loads */
-loadCurrencies();
+// Initialize
+fetchRates();
