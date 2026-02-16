@@ -1,7 +1,6 @@
 /* ==============================
-   RESET & BASE
+   RESET & BASE STYLES
 ============================== */
-
 * {
     margin: 0;
     padding: 0;
@@ -24,7 +23,6 @@ body {
 /* ==============================
    APP CONTAINER
 ============================== */
-
 .app {
     flex: 1;
     max-width: 520px;
@@ -38,7 +36,6 @@ body {
 /* ==============================
    HEADER
 ============================== */
-
 .app-header {
     text-align: center;
     margin-bottom: 20px;
@@ -59,7 +56,6 @@ body {
 /* ==============================
    MODE SWITCH
 ============================== */
-
 .mode-switch {
     display: flex;
     background: #111827;
@@ -87,9 +83,8 @@ body {
 }
 
 /* ==============================
-   DISPLAY
+   DISPLAY PANEL
 ============================== */
-
 .display {
     background: #111827;
     padding: 20px;
@@ -119,7 +114,6 @@ body {
 /* ==============================
    SCIENTIFIC PANEL
 ============================== */
-
 .scientific-panel {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -141,7 +135,6 @@ body {
 /* ==============================
    KEYPAD
 ============================== */
-
 .keypad {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -160,12 +153,11 @@ body {
     transition: all 0.18s ease;
 }
 
-/* Hover */
+/* Hover & Active States */
 .btn:hover {
     background: #243244;
 }
 
-/* Active press */
 .btn:active {
     transform: scale(0.96);
 }
@@ -193,7 +185,7 @@ body {
     background: #1D4ED8;
 }
 
-/* Zero button spans 2 columns */
+/* Zero Button spans 2 columns */
 .zero {
     grid-column: span 2;
 }
@@ -201,7 +193,6 @@ body {
 /* ==============================
    FOOTER
 ============================== */
-
 .footer {
     text-align: center;
     padding: 14px;
@@ -211,12 +202,11 @@ body {
 }
 
 /* ==============================
-   RESPONSIVE BEHAVIOR
+   RESPONSIVE STYLES
 ============================== */
 
 /* Small Phones */
 @media (max-width: 400px) {
-
     .app {
         padding: 18px 14px;
     }
@@ -237,7 +227,6 @@ body {
 
 /* Tablets */
 @media (min-width: 768px) {
-
     .app {
         max-width: 600px;
     }
@@ -258,9 +247,7 @@ body {
 
 /* Desktop Wide */
 @media (min-width: 1200px) {
-
     .app {
         max-width: 650px;
     }
-
-       }
+}
