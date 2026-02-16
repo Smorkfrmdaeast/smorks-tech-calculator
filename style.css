@@ -1,253 +1,70 @@
 /* ==============================
-   RESET & BASE STYLES
+   FULL-SCREEN APP
 ============================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    font-family: 'Inter', sans-serif;
-    background: #0A0F1C; /* Deep Midnight */
-    color: #E5E7EB;
-    -webkit-tap-highlight-color: transparent;
-}
-
-body {
+.full-screen {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
 }
 
-/* ==============================
-   APP CONTAINER
-============================== */
-.app {
-    flex: 1;
-    max-width: 520px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 24px 18px;
-    display: flex;
-    flex-direction: column;
-}
-
-/* ==============================
-   HEADER
-============================== */
-.app-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.app-header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #F9FAFB;
-}
-
-.subtitle {
-    font-size: 13px;
-    color: #94A3B8;
-    margin-top: 4px;
-}
-
-/* ==============================
-   MODE SWITCH
-============================== */
-.mode-switch {
-    display: flex;
-    background: #111827;
-    padding: 4px;
-    border-radius: 14px;
-    margin-bottom: 20px;
-}
-
-.mode-btn {
-    flex: 1;
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    background: transparent;
-    color: #94A3B8;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.mode-btn.active {
-    background: #1E293B;
-    color: #2563EB; /* Royal Blue */
-}
-
-/* ==============================
-   DISPLAY PANEL
-============================== */
+/* Make display and keypad flex nicely */
 .display {
-    background: #111827;
-    padding: 20px;
-    border-radius: 18px;
-    margin-bottom: 22px;
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    flex: 0 0 auto;
 }
 
-#history {
-    font-size: 13px;
-    color: #64748B;
-    text-align: right;
-    min-height: 18px;
-}
-
-#display {
-    width: 100%;
-    border: none;
-    background: transparent;
-    font-size: 34px;
-    font-weight: 600;
-    text-align: right;
-    color: #F9FAFB;
-    outline: none;
-}
-
-/* ==============================
-   SCIENTIFIC PANEL
-============================== */
 .scientific-panel {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-    margin-bottom: 18px;
-    transition: all 0.3s ease;
+    flex-wrap: wrap;
 }
 
-.hidden {
-    display: none;
-}
-
-/* Scientific Buttons */
-.sci {
-    background: #0F172A;
-    color: #60A5FA;
-}
-
-/* ==============================
-   KEYPAD
-============================== */
 .keypad {
+    flex: 1 0 auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
 }
 
-/* Base Buttons */
-.btn {
-    padding: 18px 0;
-    border-radius: 14px;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    background: #1E293B;
-    color: #E5E7EB;
-    transition: all 0.18s ease;
-}
-
-/* Hover & Active States */
-.btn:hover {
-    background: #243244;
-}
-
-.btn:active {
-    transform: scale(0.96);
-}
-
-/* Operator Buttons */
-.operator {
-    background: #0F172A;
-    color: #60A5FA;
-}
-
-/* Control Buttons */
-.control {
-    background: #111827;
-    color: #94A3B8;
-}
-
-/* Equal Button */
-.equal {
-    background: #2563EB;
-    color: white;
-    font-weight: 600;
-}
-
-.equal:hover {
-    background: #1D4ED8;
-}
-
-/* Zero Button spans 2 columns */
-.zero {
-    grid-column: span 2;
-}
-
-/* ==============================
-   FOOTER
-============================== */
+/* Stretch footer to bottom */
 .footer {
-    text-align: center;
-    padding: 14px;
-    font-size: 12px;
-    background: #0F172A;
-    color: #64748B;
+    flex-shrink: 0;
 }
 
-/* ==============================
-   RESPONSIVE STYLES
-============================== */
+/* Adjust button sizes for mobile full-screen */
+.btn {
+    padding: 20px 0;
+    font-size: 20px;
+}
 
-/* Small Phones */
+/* Scientific panel buttons slightly smaller */
+.sci {
+    font-size: 16px;
+    padding: 16px 0;
+}
+
+/* Responsive tweaks */
 @media (max-width: 400px) {
-    .app {
-        padding: 18px 14px;
-    }
-
     #display {
         font-size: 28px;
     }
-
     .btn {
         padding: 16px 0;
-        font-size: 16px;
+        font-size: 18px;
     }
-
     .scientific-panel {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* Tablets */
 @media (min-width: 768px) {
-    .app {
-        max-width: 600px;
-    }
-
     #display {
-        font-size: 38px;
+        font-size: 36px;
     }
-
     .btn {
         padding: 20px 0;
-        font-size: 19px;
+        font-size: 20px;
     }
-
     .scientific-panel {
         grid-template-columns: repeat(6, 1fr);
-    }
-}
-
-/* Desktop Wide */
-@media (min-width: 1200px) {
-    .app {
-        max-width: 650px;
     }
 }
