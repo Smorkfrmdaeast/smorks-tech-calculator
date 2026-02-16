@@ -1,5 +1,5 @@
 // ==========================
-// SMORK'S TECH MULTI-MODE CALCULATOR + FULL CURRENCY CONVERTER
+// SMORK'S TECH Multi-Mode Calculator + Full Currency Converter
 // ==========================
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -144,6 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Prevent calculator from capturing converter input
+  // Prevent calculator input interference
   amountInput.addEventListener('input', e => e.stopPropagation());
 });
