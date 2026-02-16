@@ -114,14 +114,12 @@ const convertBtn = document.getElementById('convertBtn');
 const conversionResult = document.getElementById('conversionResult');
 const lastUpdated = document.getElementById('lastUpdated');
 
-// Your API key
-const API_KEY = '008c03e87fd9dfb21cd8cd89';
 const API_URL = 'https://api.exchangerate.host/latest';
 
 // Load currencies dynamically
 async function loadCurrencies() {
   try {
-    const res = await fetch(`${API_URL}?apikey=${API_KEY}`);
+    const res = await fetch(API_URL); // FREE API
     const data = await res.json();
     const currencies = Object.keys(data.rates);
     currencies.forEach(cur => {
@@ -138,7 +136,7 @@ async function loadCurrencies() {
 
 loadCurrencies();
 
-// Conversion button
+// Convert currency
 convertBtn.addEventListener('click', async () => {
   const amount = parseFloat(amountInput.value);
   const from = fromCurrency.value;
@@ -151,7 +149,7 @@ convertBtn.addEventListener('click', async () => {
 
   conversionResult.textContent = 'Converting...';
   try {
-    const res = await fetch(`${API_URL}?base=${from}&symbols=${to}&apikey=${API_KEY}`);
+    const res = await fetch(`${API_URL}?base=${from}&symbols=${to}`);
     const data = await res.json();
     const rate = data.rates[to];
     const converted = (amount * rate).toFixed(4);
