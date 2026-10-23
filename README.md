@@ -1,99 +1,39 @@
 # 🔵 SMORK'S TECH Calculator & Currency Converter
 
-A premium, mobile-first web calculator combined with a real-time currency converter.  
-Built with HTML, CSS, and JavaScript using a Deep Midnight Blue interface and Royal Blue accents for a sleek, professional, production-ready experience.
-
-Designed to feel app-store ready, modern, and real-world usable.
+A mobile-first web calculator (Normal & Scientific modes) combined with a real-time currency converter, built with React, TypeScript, Vite, and Tailwind CSS.
 
 ---
 
 ## ✨ Features
 
 ### 🧮 Calculator
-- Addition, subtraction, multiplication, division
-- Decimal support
-- Clear (AC) and delete (DEL)
-- Keyboard input support
-- Division-by-zero protection
-- Smooth interaction handling
+- **Normal Mode**: Addition, subtraction, multiplication, division, percentage, decimals, clear (`AC`), and delete (`DEL`).
+- **Scientific Mode**: Trigonometric functions (`sin`, `cos`, `tan` in degrees), square root (`√`), logarithms (`log`, `ln`), exponents (`x²`, `xʸ`), constants (`π`, `e`), and parentheses.
+- **Keyboard Support**: Full keyboard input for numbers, operators, `Enter`/`=`, `Backspace`, and `Escape`.
 
 ### 💱 Currency Converter
-- Live exchange rates via API
-- Multiple currency selection
-- Real-time conversion results
-- Input validation
-- Loading state feedback
-- Network error handling
-
-### 🎨 UI & Design
-- Deep Midnight Blue base theme
-- Royal Blue accent for primary actions
-- Subtle glow effects (clean, not neon)
-- Fully responsive layout
-- Mobile-first design
-- Touch-friendly buttons
-- Modern spacing and typography
+- Live exchange rates via Open Exchange Rates API (`https://open.er-api.com/v6/latest/`).
+- Dynamic currency list with fallback support.
+- Real-time conversion calculation formatted to two decimal places.
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Tech Stack
 
-- HTML5
-- CSS3 (Responsive & Mobile-First)
-- Vanilla JavaScript
-- Exchange Rate API
-
----
-
-## 📁 Project Structure
-
-smorks-tech-calculator/
-│
-├── index.html      # Application structure
-├── style.css       # Visual styling and theme
-├── script.js       # Functional logic
-└── README.md       # Project documentation
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS v4
 
 ---
 
-## 🔑 Setup Instructions
+## 🚀 Development
 
-1. Clone the repository:
+```bash
+npm install
+npm run dev
+```
 
-   git clone https://github.com/yourusername/smorks-tech-calculator.git
-
-2. Open the project folder.
-
-3. Inside script.js, replace:
-
-   const API_KEY = "YOUR_API_KEY_HERE";
-
-   With your real API key from:
-   https://www.exchangerate-api.com/
-
-4. Open index.html in your browser.
-
-No build tools required.
-
----
-
-## 📱 Mobile Optimization
-
-- Fills the full phone screen naturally
-- Comfortable tap targets
-- Clean layout spacing
-- Professional real-world appearance
-
----
-
-## 🚀 Future Improvements
-
-- Scientific mode
-- Dark/Light toggle
-- Calculation history
-- Offline conversion fallback
-- Local storage memory
-- Advanced micro-interactions
+Runs on `http://0.0.0.0:3000`.
 
 ---
 
